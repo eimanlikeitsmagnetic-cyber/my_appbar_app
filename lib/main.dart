@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,31 +16,37 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.menu),
-            onPressed: () {
-              // you can add functionality here later
-            },
+            onPressed: () {},
           ),
           title: const Text('My AppBar App'),
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
-              onPressed: () {
-                // search action
-              },
+              onPressed: () {},
             ),
             IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () {
-                // settings action
-              },
+              onPressed: () {},
             ),
           ],
         ),
-        body: const Center(
-          child: Text('Hello, Flutter!'),
+
+        body: Container(
+          width: double.infinity,              // full width
+          height: 150,                         // height 150
+          margin: const EdgeInsets.symmetric(horizontal: 20), // 20 horizontal margin
+          padding: const EdgeInsets.only(top: 25),            // 25 top padding
+          color: Colors.green,                 // green color
+
+          child: Center(
+            child: Container(
+              width: 300,                      // child width 300
+              height: 100,                     // child height 100
+              color: Colors.red,               // red color
+            ),
+          ),
         ),
       ),
     );
   }
 }
-
