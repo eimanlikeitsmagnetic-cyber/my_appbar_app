@@ -1,142 +1,127 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TimerPage(),
-    );
-  }
-}
+      home: Scaffold(
+        backgroundColor: Colors.black,
 
-// 🔹 STATEFUL because the time changes
-class TimerPage extends StatefulWidget {
-  const TimerPage({super.key});
-
-  @override
-  State<TimerPage> createState() => _TimerPageState();
-}
-
-class _TimerPageState extends State<TimerPage> {
-  int seconds = 0;
-  Timer? timer;
-
-  // START TIMER
-  void startTimer() {
-    if (timer != null) return; // prevents double timers
-
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        seconds++;
-      });
-    });
-  }
-
-  // RESET TIMER
-  void resetTimer() {
-    timer?.cancel();
-    timer = null;
-    setState(() {
-      seconds = 0;
-    });
-  }
-
-  // FORMAT TIME mm:ss
-  String formatTime(int seconds) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
-
-    return '${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        title: const Text('My AppBar App'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          elevation: 3,
+          leading: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 24.0,
           ),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {},
-          ),
-        ],
-      ),
-
-      // 🔽 TIMER SECTION
-      body: Container(
-        width: double.infinity,
-        height: 200,
-        margin: const EdgeInsets.all(20),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(15),
-        ),
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'TIMER',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.favorite_outline_outlined,
                 color: Colors.white,
               ),
             ),
-
-            const SizedBox(height: 15),
-
-            Container(
-              width: 200,
-              height: 60,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(10),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.share,
+                color: Colors.blueAccent,
               ),
-              child: Text(
-                formatTime(seconds),
-                style: const TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: startTimer,
-                  child: const Text('Start'),
-                ),
-                ElevatedButton(
-                  onPressed: resetTimer,
-                  child: const Text('Reset'),
-                ),
-              ],
             ),
           ],
+        ),
+
+        body: Container(
+          margin: const EdgeInsets.only(top: 40),
+          padding: const EdgeInsets.all(20),
+          width: double.infinity,
+
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Sleep',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
+                  ),
+                  Icon(
+                    Icons.chevron_right_rounded,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 10),
+
+              const Text(
+                'By Alison S',
+                style: TextStyle(color: Colors.grey),
+              ),
+
+              const SizedBox(height: 25),
+
+              Row(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 50, 50, 50),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Text(
+                      'very relaxing',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    width: 80,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 50, 50, 50),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Text(
+                      'pleasant',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+
+                  Container(
+                    width: 60,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 50, 50, 50),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Text(
+                      'deep',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
