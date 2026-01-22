@@ -120,6 +120,20 @@ class MainApp extends StatelessWidget {
                   ),
                 ],
               ),
+
+              // ===== MOTIVE SECTION (ADDED) =====
+              const SizedBox(height: 40),
+
+              Center(
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  child: Image.asset(
+                    'assets/maple_leaf.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
